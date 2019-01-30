@@ -1,0 +1,10 @@
+#自己的服务中心地址
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8671/eureka/
+server:
+  port: 9090
+spring:
+  application:
+    name: cloud-discovery-client

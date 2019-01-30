@@ -1,0 +1,23 @@
+server:
+  port: 8761
+spring:
+  application:
+    name: cloud-discovery-server
+  cloud:
+    inetutils:
+      ignored-interfaces:  #忽略docker0网卡以及 veth开头的网卡
+        - docker0
+        - veth.*
+      preferred-networks:  #使用正则表达式,使用指定网络地址
+        - 192.186.
+        - 10.0
+
+eureka:
+  instance:
+    hostname: localhost   #配置主机名
+  client:
+    register-with-eureka: false    #配置服务注册中心是否以自己为客户端进行注册(配置false)
+    fetch-registry: false       #是否取得注册信息(配置false)
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+    #配置eureka客户端的缺省域(该配置可能没有提示,请复制或者手动输入,切勿使用有提示的service-url会引起内置tomcat报错)
